@@ -1,0 +1,36 @@
+<div class="wrapper">
+    <nav id="sidebar" v-bind:class = "{active: isActive}" >
+        <div class="sidebar-header">
+            <h3>RedesUsach</h3>
+            <strong>RU</strong>
+        </div>
+
+        <div v-on:click="collapse" class="text-center flechas">
+          <a href="#" class="">
+            <i class="glyphicon glyphicon-resize-horizontal"></i>
+          </a>
+        </div>
+
+        <ul class="list-unstyled components">
+            <li class="">
+                <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
+                    <i class="  glyphicon glyphicon-signal"></i>
+                    Estadisticas
+                </a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li><a href="#">Home 1</a></li>
+                </ul>
+                <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
+                  <i class="glyphicon glyphicon-map-marker"></i>
+                    Mapa Calor
+                </a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                  <li><a href="#">Page 1</a></li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <div id="content" class="col-md-12">
+        <router-view></router-view>
+      </div>
+</div>

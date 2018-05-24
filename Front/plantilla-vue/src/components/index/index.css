@@ -1,0 +1,24 @@
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis--x path {
+  display: none;
+}
+
+
+svg {
+    border: 1px solid #000000;
+}
+rect {
+    stroke: SteelBlue;
+    stroke-width: 2;
+    fill: LightSteelBlue;
+}
+rect:hover {
+    fill: SteelBlue;
+}
