@@ -1,13 +1,13 @@
-import sidebar from '../sidebar/sidebar.vue'
-
 export default {
   data() {
     return {
-
+      isActive: false,
     }
   },
   methods: {
-    
+    collapse(){
+      this.isActive = !this.isActive;
+    }
   },
   components: {
     sidebar
