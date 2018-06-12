@@ -2,21 +2,23 @@ package cl.redesUsach.redes.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.format.annotation.DateTimeFormat;
-import javax.persistence.*;
 
 import java.util.Date;
 
+@Document(collection="datos")
 public class Signal {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
     private Double latitud;
     private Double longitud;
-    @Temporal(TemporalType.TIMESTAMP)
+   
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date fecha;
+    
+    private String estado;
 
     private Double velocidad;
     private Double intensidad;
@@ -53,4 +55,11 @@ public class Signal {
     public Double getVelocidad() {
         return velocidad;
     }
+
+	public String getEstado() {
+		return estado;
+	}
+
+    
+    
 }
