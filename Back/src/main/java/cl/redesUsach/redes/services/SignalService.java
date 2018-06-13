@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.*;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @CrossOrigin
 @RestController
@@ -26,6 +28,20 @@ public class SignalService {
     @ResponseBody
     public Iterable<Signal> getAllSignals(){
         return signalRepository.findAll();
+    }
+
+    @GetMapping("/{calidad}")
+    @ResponseBody
+    public Iterable<Signal> getEspecificSignal(@PathVariable("calidad") String calidad){
+        Iterable<Signal> señales= signalRepository.findAll();
+        List<Signal> seleccionadas= new ArrayList<Signal>();
+        for (Signal señal:señales) {
+            if(señal.getEstado().equals(calidad)){
+                seleccionadas.add(señal);
+            }
+
+        }
+        return seleccionadas;
     }
 /*
     @RequestMapping(value= "/fecha/{fecha}",method = RequestMethod.GET)
