@@ -1,5 +1,6 @@
 package cl.redesUsach.redes.services;
 
+
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -66,8 +67,9 @@ public class UsuarioService {
 		
 	}
 	
-	@Transactional
+	
 	@PostMapping("auth")
+	@Transactional
 	public Usuario auth(@RequestBody String json) throws JSONException {
 		
 		JSONObject response = new JSONObject(json);

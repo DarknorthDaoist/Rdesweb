@@ -30,6 +30,7 @@ dependencies {
 	compile('org.springframework.boot:spring-boot-starter-data-mongodb')
 	compile('org.springframework.boot:spring-boot-starter-data-rest')
 	compile('org.springframework.boot:spring-boot-starter-web')
+	compile('org.json:json:20171018')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
 	runtime('mysql:mysql-connector-java')
 }
