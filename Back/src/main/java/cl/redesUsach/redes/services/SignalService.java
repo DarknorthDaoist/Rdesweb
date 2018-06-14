@@ -31,15 +31,13 @@ public class SignalService {
     }
 
     @GetMapping("/{calidad}")
-    @ResponseBody
     public Iterable<Signal> getEspecificSignal(@PathVariable("calidad") String calidad){
-        Iterable<Signal> señales= signalRepository.findAll();
+    	Iterable<Signal> señales= signalRepository.findAll();
         List<Signal> seleccionadas= new ArrayList<Signal>();
-        for (Signal señal:señales) {
-            if(señal.getEstado().equals(calidad)){
+        for (Signal señal: señales) {
+            if(señal.getEstado()!=null && señal.getEstado().equals(calidad)){
                 seleccionadas.add(señal);
             }
-
         }
         return seleccionadas;
     }
@@ -63,6 +61,8 @@ public class SignalService {
     public Signal create(@RequestBody Signal resource) {
         return signalRepository.save(resource);
     }
+    
+   
 
 
 }
