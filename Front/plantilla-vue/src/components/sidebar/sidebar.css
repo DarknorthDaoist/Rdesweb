@@ -67,8 +67,6 @@ i, span {
 
 }
 
-
-
 #sidebar.active .sidebar-header h3, #sidebar.active .CTAs {
     display: none;
 }
