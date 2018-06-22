@@ -9,7 +9,5 @@ export default {
       this.isActive = !this.isActive;
     }
   },
-  components: {
-    sidebar
-  }
+  
 }
