@@ -1,0 +1,21 @@
+#map {
+    height: 90%;
+}      
+html, body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+}
+
+.cuerpo{
+	height: 100%;
+	
+}
+.botones{
+	padding-bottom: 10px;
+}
+
+.btn-default:hover{
+	color: #fff;
+	background: #910700;
+}

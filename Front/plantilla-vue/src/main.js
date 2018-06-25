@@ -9,6 +9,6 @@ Vue.use(VueResource);
 new Vue({
   el: '#app',
   router,
-  render: h => h(Login)
+  render: h => h(App)
 })
 

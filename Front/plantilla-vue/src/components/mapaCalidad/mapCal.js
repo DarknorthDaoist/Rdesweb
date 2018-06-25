@@ -4,17 +4,19 @@ export default{
         map:[],
         heatmapExcellent:[],
         heatmapGood:[],
-
+        heatmapModerate:[],
+        heatmapPoor:[],
+        heatmapUnknow:[],
         dExcellent: [],
         dGood:[],
         dModerate:[],
         dPoor: [],
-        buttonActiveLunes: false,
-        buttonActiveMartes: false,
-        buttonActiveMiercoles: false,
-        buttonActiveJueves: false,
-        buttonActiveViernes: false,
-        buttonActiveSabado: false,
+        dUnknow:[],
+        bActiveE: false,
+        bActiveB: false,
+        bActiveM: false,
+        bActiveMa: false,
+        bActiveD: false,
         buttonActivePull: false,
 	   	}
 	},
@@ -27,31 +29,31 @@ export default{
   },
   	methods:{
         marcar(argument){
-          if (argument == "lunes") {
-               
-                // heatmap.setMap(heatmap.getMap() ? null : map);
-              this.buttonActiveLunes =! this.buttonActiveLunes;
+          if (argument == "exelente") { 
+              // heatmapExcellent.setMap(heatmapExcellent.getMap() ? null : map);
+              this.bActiveE =! this.bActiveE;
             }
-            else{if (argument == "martes") {
-              this.buttonActiveMartes =! this.buttonActiveMartes;
+            else{if (argument == "bueno") {
+              // heatmapExcellent.setMap(heatmapExcellent.getMap() ? null : map);
+              
+              this.bActiveB =! this.bActiveB;
             }
-            else{if (argument == "miercoles") {
-
-              this.buttonActiveMiercoles =! this.buttonActiveMiercoles;
+            else{if (argument == "moderado") {
+             
+              this.bActiveM =! this.bActiveM;
             } 
-            else{if (argument == "jueves") {
+            else{if (argument == "malo") {
               
-              this.buttonActiveJueves =! this.buttonActiveJueves;
+              this.bActiveMa =! this.bActiveMa;
             } 
-            else{if (argument == "viernes") {
+            else{if (argument == "desconocido") {
               
-              this.buttonActiveViernes =! this.buttonActiveViernes;
+              this.bActiveD =! this.bActiveD;
             } 
             else{if (argument == "sabado") {
-            
-              this.buttonActiveSabado =! this.buttonActiveSabado;
+              this.buttonActivePull =! this.buttonActivePull;
               } 
-        }}}}}},
+        }}}}}}},
 
   		  initMap:function() {
 	        this.map = new google.maps.Map(document.getElementById("map"), {
@@ -102,9 +104,60 @@ export default{
                         'rgba(63, 0, 100, 1)', 
                         'rgba(63, 0, 100, 1)'] 
           });
-      	},
-      	toggleHeatmap:function() {
-        	heatmap.setMap(heatmap.getMap() ? null : map);
+          this.heatmapModerate = new google.maps.visualization.HeatmapLayer({
+            data: this.dModerate,
+            map: this.map,
+            gradient: [ 'rgba(0, 255, 255, 0)', 
+                        'rgba(0, 255, 255, 0)', 
+                        'rgba(0, 191, 255, 0)', 
+                        'rgba(0, 127, 255, 0)', 
+                        'rgba(0, 63, 255, 0)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)'] 
+          });
+          this.heatmapPoor = new google.maps.visualization.HeatmapLayer({
+            data: this.dPoor,
+            map: this.map,
+            gradient: [ 'rgba(0, 255, 255, 0)', 
+                        'rgba(0, 255, 255, 0)', 
+                        'rgba(0, 191, 255, 0)', 
+                        'rgba(0, 127, 255, 0)', 
+                        'rgba(0, 63, 255, 0)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)'] 
+          });
+          this.heatmapUnknow = new google.maps.visualization.HeatmapLayer({
+            data: this.dUnknow,
+            map: this.map,
+            gradient: [ 'rgba(0, 255, 255, 0)', 
+                        'rgba(0, 255, 255, 0)', 
+                        'rgba(0, 191, 255, 0)', 
+                        'rgba(0, 127, 255, 0)', 
+                        'rgba(0, 63, 255, 0)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)', 
+                        'rgba(255, 0, 0, 1)'] 
+          });
       	},
 
 
