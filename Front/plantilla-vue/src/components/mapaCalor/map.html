@@ -1,1 +1,12 @@
-<div id="map"></div>
+<div class="cuerpo">
+	<div class="botones">
+		<button type="button" class="btn btn-default" @click="marcar('lunes')" v-bind:class = "{active: buttonActiveLunes}">Lunes</button>
+		<button type="button" class="btn btn-default" @click="marcar('martes')" v-bind:class = "{active: buttonActiveMartes}">Martes</button>
+		<button type="button" class="btn btn-default" @click="marcar('miercoles')" v-bind:class = "{active: buttonActiveMiercoles}">Miercoles</button>
+		<button type="button" class="btn btn-default" @click="marcar('jueves')" v-bind:class = "{active: buttonActiveJueves}">Jueves</button>
+		<button type="button" class="btn btn-default" @click="marcar('viernes')" v-bind:class = "{active: buttonActiveViernes}">Viernes</button>
+		<button type="button" class="btn btn-default" @click="marcar('sabado')" v-bind:class = "{active: buttonActiveSabado}">Sabado</button>
+		<button type="button" class="btn btn-default pull-right" v-bind:class = "{active: buttonActivePull}">Mostrar Leyenda</button>
+	</div>
+	<div id="map"></div>
+</div>

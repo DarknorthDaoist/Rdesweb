@@ -1,10 +1,20 @@
 export default{
 	data(){
 		return{
+        map:[],
+        heatmapExcellent:[],
+        heatmapGood:[],
         dExcellent: [],
         dGood:[],
         dModerate:[],
-        dPoor: []
+        dPoor: [],
+        buttonActiveLunes: false,
+        buttonActiveMartes: false,
+        buttonActiveMiercoles: false,
+        buttonActiveJueves: false,
+        buttonActiveViernes: false,
+        buttonActiveSabado: false,
+        buttonActivePull: false,
 	   	}
 	},
 
@@ -15,10 +25,33 @@ export default{
 		this.initMap();
   },
   	methods:{
-  		  initMap:function() {
-          var map, heatmapExcellent, heatmapGood;
+        marcar(argument){
+          console.log(argument);
+          if (argument == "lunes") {
+            this.buttonActiveLunes =! this.buttonActiveLunes;
+            // heatmap.setMap(heatmap.getMap() ? null : map);
+            }
+            else{if (argument == "martes") {
+            this.buttonActiveMartes =! this.buttonActiveMartes;
+            }
+            else{if (argument == "miercoles") {
+            this.buttonActiveMiercoles =! this.buttonActiveMiercoles;
+            } 
+            else{if (argument == "jueves") {
+            this.buttonActiveJueves =! this.buttonActiveJueves;
+            } 
+            else{if (argument == "viernes") {
+            this.buttonActiveViernes =! this.buttonActiveViernes;
+            } 
+            else{if (argument == "sabado") {
+            this.buttonActiveSabado =! this.buttonActiveSabado;
+            } 
+            else{
+          
+        }}}}}}},
 
-	        map = new google.maps.Map(document.getElementById("map"), {
+  		  initMap:function() {
+	        this.map = new google.maps.Map(document.getElementById("map"), {
 	          zoom: 19,
             // center: {lat: -33.451978, lng:  -70.683062},
             mapTypeId: 'satellite',
@@ -30,9 +63,9 @@ export default{
             rotateControl:false,
 	        });
 
-	        heatmapExcellent = new google.maps.visualization.HeatmapLayer({
+	        this.heatmapExcellent = new google.maps.visualization.HeatmapLayer({
 	          data: this.dExcellent,
-	          map: map,
+	          map: this.map,
             gradient: [ 'rgba(0, 255, 255, 0)', 
                         'rgba(0, 255, 255, 0)', 
                         'rgba(0, 191, 255, 0)', 
@@ -48,9 +81,9 @@ export default{
                         'rgba(255, 0, 0, 1)', 
                         'rgba(255, 0, 0, 1)'] 
 	        });
-          heatmapGood = new google.maps.visualization.HeatmapLayer({
+          this.heatmapGood = new google.maps.visualization.HeatmapLayer({
             data: this.dGood,
-            map: map,
+            map: this.map,
             gradient: [ 'rgba(0, 255, 255, 0)', 
                         'rgba(0, 255, 255, 0)', 
                         'rgba(0, 191, 255, 0)', 
@@ -77,12 +110,11 @@ export default{
         this.$http.get('http://206.189.184.79:8091/redes/signals/Excellent')
         .then(response=>{
           mapData = response.body;
-          console.log("excellent", mapData);
+          // console.log("excellent", mapData);
           for (i = 0; i < mapData.length; i++) {
             linea = new google.maps.LatLng(mapData[i].latitud,mapData[i].longitud);
             this.dExcellent.push(linea);
           }
-          console.log("texcellent", this.dExcellent);
 
         }, response=>{
            console.log('error cargando lista1 ');
@@ -94,7 +126,6 @@ export default{
         this.$http.get('http://206.189.184.79:8091/redes/signals/Good')
         .then(response=>{
           mapData = response.body;
-          console.log("good", mapData);
           for (i = 0; i < mapData.length; i++) {
             linea = new google.maps.LatLng(mapData[i].latitud,mapData[i].longitud);
             this.dGood.push(linea);
