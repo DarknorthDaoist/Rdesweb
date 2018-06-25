@@ -1,0 +1,16 @@
+.miPanel{
+    margin-top:70px;
+    border-radius:0px !important;
+}
+
+.miButton{
+    border-radius:0px !important;
+}
+
+.miInput{
+    border-radius: 0px !important;
+}
+
+body{
+    background-color: #fafafa;
+}

@@ -8,5 +8,6 @@ Vue.use(VueRouter);
 const routes = [
     { path: '/index', alias: '/', component: Index},
     { path: '/mapa', alias: '/map', component: Mapa}
+
 ]
 export default new VueRouter({routes})
