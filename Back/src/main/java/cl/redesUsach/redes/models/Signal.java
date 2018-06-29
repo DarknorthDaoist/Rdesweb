@@ -11,36 +11,36 @@ import java.util.Date;
 public class Signal {
     @Id
     private String id;
-    private Double latitud;
-    private Double longitud;
+    private String latitud;
+    private String longitud;
    
-    @JsonFormat(pattern = "dd/MM/yyyy HH:mm")
+    @JsonFormat(pattern = "dd/MM/yyyy HH:mm",timezone="GMT-4")
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date fecha;
     
     private String estado;
 
-    private Double velocidad;
-    private Double intensidad;
+    private String velocidad;
+    private String intensidad;
 
 
     public String  getId() {
         return id;
     }
 
-    public Double getLatitud() {
+    public String getLatitud() {
         return latitud;
     }
 
-    public Double getLongitud() {
+    public String getLongitud() {
         return longitud;
     }
 
-    public void setLatitud(Double latitud) {
+    public void setLatitud(String latitud) {
         this.latitud = latitud;
     }
 
-    public void setLongitud(Double longitud) {
+    public void setLongitud(String longitud) {
         this.longitud = longitud;
     }
 
@@ -48,11 +48,11 @@ public class Signal {
         this.id = id;
     }
 
-    public Double getIntensidad() {
+    public String getIntensidad() {
         return intensidad;
     }
 
-    public Double getVelocidad() {
+    public String getVelocidad() {
         return velocidad;
     }
 
@@ -60,6 +60,15 @@ public class Signal {
 		return estado;
 	}
 
+	public Date getFecha() {
+		return fecha;
+	}
+
+	public void setFecha(Date fecha) {
+		this.fecha = fecha;
+	}
+
+	
     
     
 }
