@@ -22,7 +22,6 @@ export default{
 	},
 
 	mounted:function(){
-    
     this.getPointsExcellent();
     this.getPointsGood();
 		this.initMap();
@@ -53,7 +52,7 @@ export default{
             else{if (argument == "sabado") {
               this.buttonActivePull =! this.buttonActivePull;
               } 
-        }}}}}}},
+        }}}}}},
 
   		  initMap:function() {
 	        this.map = new google.maps.Map(document.getElementById("map"), {
@@ -171,9 +170,8 @@ export default{
             linea = new google.maps.LatLng(mapData[i].latitud,mapData[i].longitud);
             this.dExcellent.push(linea);
           }
-
         }, response=>{
-           console.log('error cargando lista1 ');
+           console.log('error cargando lista1');
         });
       },
 

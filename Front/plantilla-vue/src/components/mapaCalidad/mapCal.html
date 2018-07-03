@@ -1,11 +1,25 @@
 <div class="cuerpo">
 	<div class="botones">
-		<button type="button" class="btn btn-default" @click="marcar('exelente')" v-bind:class = "{active: bActiveE}">Exelente</button>
-		<button type="button" class="btn btn-default" @click="marcar('bueno')" v-bind:class = "{active: bActiveB}">Bueno</button>
-		<button type="button" class="btn btn-default" @click="marcar('moderado')" v-bind:class = "{active: bActiveM}">Moderado</button>
-		<button type="button" class="btn btn-default" @click="marcar('malo')" v-bind:class = "{active: bActiveMa}">Malo</button>
-		<button type="button" class="btn btn-default" @click="marcar('desconocido')" v-bind:class = "{active: bActiveD}">Desconocido</button>
-		<button type="button" class="btn btn-default pull-right" v-bind:class = "{active: buttonActivePull}">Mostrar Leyenda</button>
+		<ul class="nav nav-pills nav-justified">
+		  <li class="nav-item">
+		   <a class="nav-link" @click="marcar('exelente')" v-bind:class = "{active: bActiveE}">Exelente</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" @click="marcar('bueno')" v-bind:class = "{active: bActiveB}">Bueno</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" @click="marcar('moderado')" v-bind:class = "{active: bActiveM}">Moderado</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link " @click="marcar('malo')" v-bind:class = "{active: bActiveMa}">Malo</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link " @click="marcar('desconocido')" v-bind:class = "{active: bActiveD}">Desconocido</a>
+		  </li>
+		  <li class="nav-item">
+		    <a class="nav-link" v-bind:class = "{active: buttonActivePull}">Mostrar Leyenda</a>
+		  </li>
+		</ul>
 	</div>
 	<div id="map"></div>
 </div>

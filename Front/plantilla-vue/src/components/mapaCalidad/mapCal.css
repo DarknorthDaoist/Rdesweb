@@ -19,3 +19,11 @@ html, body {
 	color: #fff;
 	background: #910700;
 }
+
+.active {
+	background: #6C0500;
+	
+}
+.nav-link:hover{
+	color: #6C0500;
+}
