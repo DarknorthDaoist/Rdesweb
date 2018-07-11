@@ -11,11 +11,11 @@
   "license": "ISC",
   "devDependencies": {
     "babili-webpack-plugin": "^0.1.2",
-    "copy-webpack-plugin": "^4.0.1",
+    "copy-webpack-plugin": "^4.5.2",
     "css-loader": "^0.28.4",
     "file-loader": "^0.11.2",
     "html-webpack-plugin": "^2.29.0",
-    "node-sass": "^4.5.3",
+    "node-sass": "^4.9.2",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
     "uglify-js": "git://github.com/mishoo/UglifyJS2.git#harmony-v2.8.22",
@@ -26,11 +26,12 @@
     "webpack-dev-server": "^2.5.1"
   },
   "dependencies": {
-    "ajv": "^6.4.0",
-    "json-server": "^0.12.1",
+    "ajv": "^6.5.2",
+    "json-server": "^0.14.0",
     "vue": "^2.4.1",
     "vue-google-heatmap": "^1.0.1",
-    "vue-resource": "^1.3.4",
-    "vue-router": "^2.7.0"
+    "vue-resource": "^1.5.1",
+    "vue-router": "^2.7.0",
+    "webpack-cli": "^3.0.8"
   }
 }

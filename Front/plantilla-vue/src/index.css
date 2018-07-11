@@ -1,0 +1,11 @@
+a:hover{
+    color: #6C0500;
+    text-decoration: none;
+    transition: all 0.3s;   
+}
+
+a, a:focus{
+    color: #fff;
+    text-decoration: none;
+    transition: all 0.3s;
+}

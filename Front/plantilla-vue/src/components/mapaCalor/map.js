@@ -1,6 +1,7 @@
 export default{
 	data(){
 		return{
+        isActive: false,
         map:[],
         heatmapExcellent:[],
         heatmapGood:[],
@@ -26,6 +27,10 @@ export default{
 		this.initMap();
   },
   	methods:{
+        collapseLey(){
+          this.isActive = !this.isActive;
+          // desde aqui hacer insercion de codigo en leyenda*
+        },
         marcar(argument){
           if (argument == "lunes") {
                

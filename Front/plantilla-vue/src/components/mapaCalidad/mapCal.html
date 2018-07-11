@@ -1,25 +1,35 @@
-<div class="cuerpo">
-	<div class="botones">
-		<ul class="nav nav-pills nav-justified">
-		  <li class="nav-item">
-		   <a class="nav-link" @click="marcar('exelente')" v-bind:class = "{active: bActiveE}">Exelente</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" @click="marcar('bueno')" v-bind:class = "{active: bActiveB}">Bueno</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" @click="marcar('moderado')" v-bind:class = "{active: bActiveM}">Moderado</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link " @click="marcar('malo')" v-bind:class = "{active: bActiveMa}">Malo</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link " @click="marcar('desconocido')" v-bind:class = "{active: bActiveD}">Desconocido</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" v-bind:class = "{active: buttonActivePull}">Mostrar Leyenda</a>
-		  </li>
-		</ul>
+<div class="cuerpo wrapper">
+	<div class="cuerpo" id="pagMapa"> 
+		<div class="botones">
+			<ul class="nav nav-pills nav-justified">
+				<li class="nav-item">
+					<a class="nav-link" @click="marcar('exelente')" v-bind:class = "{active: bActiveE}">Exelente</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" @click="marcar('bueno')" v-bind:class = "{active: bActiveB}">Bueno</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" @click="marcar('moderado')" v-bind:class = "{active: bActiveM}">Moderado</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " @click="marcar('malo')" v-bind:class = "{active: bActiveMa}">Malo</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " @click="marcar('desconocido')" v-bind:class = "{active: bActiveD}">Desconocido</a>
+				</li> 
+				<li class="nav-item">
+					<a class="nav-link" @click="collapseLey" v-bind:class = "{active: buttonActivePull}">Mostrar Leyenda</a>
+				</li>
+			</ul>
+		</div>
+		<div id="map"></div>
 	</div>
-	<div id="map"></div>
+	<nav id="leyenda" v-bind:class = "{active: isActive}">
+		<div class="header-bar">
+			<h3></h3>
+		</div>
+		<div class="contLey">
+			
+		</div>
+	</nav>
 </div>

@@ -1,4 +1,5 @@
 import sidebar from '../sidebar/sidebar.vue'
+import leybar from '../leybar/ley.vue'
 
 export default {
   data() {
@@ -10,6 +11,7 @@ export default {
     
   },
   components: {
-    sidebar
+    sidebar,
+    leybar
   }
 }

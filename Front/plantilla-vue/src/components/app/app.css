@@ -3,8 +3,9 @@
     align-items: stretch;
 }
 #content{
+    height: 100%;
 	background: #910700;
-	padding: 10px;
+	padding: 0px;
     min-height: 100vh;
     transition: all 0.3s;
 }

@@ -1,29 +1,44 @@
-#map {
-    height: 90%;
-}      
-html, body {
-	height: 100%;
-	margin: 0;
-	padding: 0;
-}
-
-.cuerpo{
+#pagMapa{
+	padding: 5px;
+	min-height: 100vh;
+	transition: all 0.3s;
 	height: 100%;
 	
 }
-.botones{
-	padding-bottom: 10px;
+html, body {
+	height: 100%;
 }
-
+#map {
+	height: 90%;
+}
+.botones{
+	padding-bottom:10px;  
+}
+.cuerpo{
+	height: 100%;
+}
 .btn-default:hover{
 	color: #fff;
 	background: #910700;
 }
 
 .active {
-	background: #6C0500;
-	
+	background: #6C0500;	
 }
 .nav-link:hover{
 	color: #6C0500;
 }
+
+/* Tab Leyenda */
+#leyenda {
+    min-width: 0px;
+    max-width: 0px;
+    background: #910700;
+    color: #fff;
+    transition: all 0.3s;
+}
+#leyenda.active {
+    min-width: 200px;
+    max-width: 200px;
+}
+	

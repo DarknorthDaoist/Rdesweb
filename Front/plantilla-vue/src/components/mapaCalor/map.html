@@ -1,28 +1,38 @@
-<div class="cuerpo">
-	<div class="botones">
-		<ul class="nav nav-pills nav-justified">
-		  <li class="nav-item">
-		   <a class="nav-link"@click="marcar('lunes')" v-bind:class = "{active: buttonActiveLunes}"">Lunes</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link"@click="marcar('martes')" v-bind:class = "{active: buttonActiveMartes}">Martes</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link"@click="marcar('miercoles')" v-bind:class = "{active: buttonActiveMiercoles}"">Miercoles</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link " @click="marcar('jueves')" v-bind:class = "{active: buttonActiveJueves}">Jueves</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link " @click="marcar('viernes')" v-bind:class = "{active: buttonActiveViernes}">Viernes</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link " @click="marcar('sabado')" v-bind:class = "{active: buttonActiveSabado}">Sabado</a>
-		  </li>
-		  <li class="nav-item">
-		    <a class="nav-link" v-bind:class = "{active: buttonActivePull}">Mostrar Leyenda</a>
-		  </li>
-		</ul>
+<div class="cuerpo wrapper">
+	<div class="cuerpo" id="pagMapa">
+		<div class="botones" >
+			<ul class="nav nav-pills nav-justified">
+				<li class="nav-item">
+					<a class="nav-link"@click="marcar('lunes')" v-bind:class = "{active: buttonActiveLunes}">Lunes</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link"@click="marcar('martes')" v-bind:class = "{active: buttonActiveMartes}">Martes</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link"@click="marcar('miercoles')" v-bind:class = "{active: buttonActiveMiercoles}">Miercoles</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " @click="marcar('jueves')" v-bind:class = "{active: buttonActiveJueves}">Jueves</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " @click="marcar('viernes')" v-bind:class = "{active: buttonActiveViernes}">Viernes</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link " @click="marcar('sabado')" v-bind:class = "{active: buttonActiveSabado}">Sabado</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" @click="collapseLey" v-bind:class = "{active: buttonActivePull}">Mostrar Leyenda</a>
+				</li>
+			</ul>
+		</div>
+		<div id="map"></div>
 	</div>
-	<div id="map"></div>
+	<nav id="leyenda" v-bind:class = "{active: isActive}">
+		<div class="header-bar">
+			<h3></h3>
+		</div>
+		<div class="contLey">
+			
+		</div>
+	</nav>
 </div>

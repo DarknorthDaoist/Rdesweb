@@ -1,0 +1,11 @@
+/* #leyenda {
+    min-width: 0px;
+    max-width: 0px;
+    background: #910700;
+    color: #fff;
+    transition: all 0.3s;
+}
+#leyenda.active {
+    min-width: 200px;
+    max-width: 200px;
+} */

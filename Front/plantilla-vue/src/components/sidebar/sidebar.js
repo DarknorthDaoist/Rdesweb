@@ -5,7 +5,7 @@ export default {
     }
   },
   methods: {
-    collapse(){
+    collapseSide(){
       this.isActive = !this.isActive;
     }
   },
