@@ -1,4 +1,5 @@
 export default{
+  name:"mapCalidad",
 	data(){
 		return{
         isActive: false,
@@ -173,7 +174,7 @@ export default{
             this.dExcellent.push(linea);
           }
         }, response=>{
-           console.log('error cargando lista1');
+           console.log('error cargando lista Excellente');
         });
       },
 
@@ -187,7 +188,7 @@ export default{
             this.dGood.push(linea);
           }
         }, response=>{
-           console.log('error cargando lista2');
+           console.log('error cargando lista Buena');
         });
       },
   	}

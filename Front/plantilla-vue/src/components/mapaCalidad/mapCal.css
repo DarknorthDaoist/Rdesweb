@@ -29,7 +29,6 @@ html, body {
 	color: #6C0500;
 }
 
-/* Tab Leyenda */
 #leyenda {
     min-width: 0px;
     max-width: 0px;
@@ -41,4 +40,3 @@ html, body {
     min-width: 200px;
     max-width: 200px;
 }
-	

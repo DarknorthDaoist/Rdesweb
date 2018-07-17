@@ -1,4 +1,5 @@
 export default{
+  name:"mapDia",
 	data(){
 		return{
         isActive: false,

@@ -1,6 +1,6 @@
 .miPanel{
-    margin-top:70px;
     border-radius:0px !important;
+    align-content: center !important;
 }
 
 .miButton{
@@ -11,6 +11,13 @@
     border-radius: 0px !important;
 }
 
-body{
-    background-color: #fafafa;
+.centradoVertical{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+hr{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }

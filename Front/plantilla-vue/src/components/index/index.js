@@ -4,10 +4,4 @@ export default{
 
 		}
 	},
-	mounted:{
-
-	},
-  	methods:{
-  		  
-  	}
 }
