@@ -31,11 +31,12 @@ export default{
   	methods:{
       collapseLey(){
         this.isActive = !this.isActive;
+        this.buttonActivePull =! this.buttonActivePull;
         // desde aqui hacer insercion de codigo en leyenda*
       },
       marcar(argument){
         if (argument == "exelente") { 
-            // heatmapExcellent.setMap(heatmapExcellent.getMap() ? null : map);
+            
             this.bActiveE =! this.bActiveE;
           }
           else{if (argument == "bueno") {
@@ -62,7 +63,6 @@ export default{
       initMap:function() {
         this.map = new google.maps.Map(document.getElementById("map"), {
           zoom: 19,
-          // center: {lat: -33.451978, lng:  -70.683062},
           mapTypeId: 'satellite',
 
           center: {lat: -33.450183, lng:  -70.686587},
@@ -90,6 +90,8 @@ export default{
                       'rgba(255, 0, 0, 1)', 
                       'rgba(255, 0, 0, 1)'] 
         });
+        
+        
         this.heatmapGood = new google.maps.visualization.HeatmapLayer({
           data: this.dGood,
           map: this.map,

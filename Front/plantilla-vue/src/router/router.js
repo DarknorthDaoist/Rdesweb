@@ -7,6 +7,7 @@ import Login from '../components/login/login.vue';
 
 Vue.use(VueRouter);
 
+//Consulta a bd de si esta logeado
 
 
 const router = new VueRouter({
@@ -21,9 +22,10 @@ const router = new VueRouter({
 // Aqui hay que agregar el tema del logeo, en el true la verificacion si esta logeado 
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
-      if (Login.autentified) {
+      if (false) {
           next();
     } else {
+
         next({
             path: '/login',
             query: { redirect: to.fullPath },

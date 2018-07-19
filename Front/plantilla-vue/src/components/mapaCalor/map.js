@@ -17,7 +17,7 @@ export default{
         buttonActiveJueves: false,
         buttonActiveViernes: false,
         buttonActiveSabado: false,
-        buttonActivePull: false,
+        buttonActivePull: false
 	   	}
 	},
 
@@ -30,6 +30,7 @@ export default{
   	methods:{
         collapseLey(){
           this.isActive = !this.isActive;
+          this.buttonActivePull =! this.buttonActivePull;
           // desde aqui hacer insercion de codigo en leyenda*
         },
         marcar(argument){
