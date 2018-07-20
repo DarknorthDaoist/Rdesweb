@@ -1,3 +1,4 @@
+
 export default{
   name:"mapCalidad",
 	data(){
@@ -20,8 +21,11 @@ export default{
         bActiveMa: false,
         bActiveD: false,
         buttonActivePull: false,
-	   	}
-	},
+        date: new Date(2018,7,18),
+        
+       }
+  },
+  
 
 	mounted:function(){
     this.getPointsExcellent();

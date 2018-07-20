@@ -2,7 +2,7 @@ export default{
 	name:"login",
 	data(){
 		return{
-			autentified:false,
+			autentified:true,
 			input: {
 				username: "",
 				password: ""
@@ -17,12 +17,12 @@ export default{
 			if(this.input.username != "" && this.input.password != "") {
 				this.autentified=true;
 				
-				// if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {
-				// 	this.$emit("authenticated", true);
-				// 	this.$router.replace({ name: "secure" });
-				// } else {
-				// 	this.error2 = true;
-				// }
+				 if(this.input.username == this.$parent.mockAccount.username && this.input.password == this.$parent.mockAccount.password) {
+				 	this.$emit("authenticated", true);
+				 	this.$router.replace({ name: "secure" });
+				 } else {
+				 	this.error2 = true;
+				 }
 			} else {
 				this.error = true;
 			}

@@ -2,7 +2,7 @@
 	<div class="cuerpo" id="pagMapa">
 		<div class="botones" >
 			<ul class="nav nav-pills nav-justified">
-				<li class="nav-item">
+				<!--<li class="nav-item">
 					<a class="nav-link"@click="marcar('lunes')" v-bind:class = "{active: buttonActiveLunes}">Lunes</a>
 				</li>
 				<li class="nav-item">
@@ -19,11 +19,22 @@
 				</li>
 				<li class="nav-item">
 					<a class="nav-link " @click="marcar('sabado')" v-bind:class = "{active: buttonActiveSabado}">Sabado</a>
-				</li>
+				</li>-->
 				<li class="nav-item">
-					<a class="nav-link" @click="collapseLey" v-bind:class = "{active: buttonActivePull}">Mostrar Leyenda</a>
+					<a class="nav-link" @click="collapseLey" v-bind:class = "{active: buttonActivePull}" style = "float:right">Mostrar Leyenda</a>
 				</li>
 			</ul>
+		</div>
+		<div class = "calendar">
+			<datepicker :v-model = "date" name = "uniquename" placeholder = "Seleccione una fecha"></datepicker>
+		</div>
+		<div class = "horario">
+			<form action = "">
+				<input type = "radio" name = "hour" value = ""> Mañana (8-12)  
+				<input type = "radio" name = "hour" value = ""> Tarde (12 -17)  
+				<input type = "radio" name = "hour" value = ""> Noche (18-24)  
+				<!--<button type = "button" class = "btn btn-default btn-md myBtn">Enviar</button>!-->
+			</form>
 		</div>
 		<div id="map"></div>
 	</div>

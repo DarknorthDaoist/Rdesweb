@@ -42,3 +42,16 @@ html, body {
     max-width: 200px;
 }
 	
+.calendar{
+	margin-bottom: 10px;
+}
+
+.horario{
+	color:whitesmoke;
+	margin-bottom: 5px;
+}
+
+.myBtn{
+	border-radius:0px;
+	margin-left:10px;
+}

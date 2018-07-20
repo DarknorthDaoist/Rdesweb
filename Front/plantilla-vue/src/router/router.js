@@ -21,7 +21,7 @@ const router = new VueRouter({
 // Aqui hay que agregar el tema del logeo, en el true la verificacion si esta logeado 
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
-      if (Login.autentified) {
+      if (true) {
           next();
     } else {
         next({

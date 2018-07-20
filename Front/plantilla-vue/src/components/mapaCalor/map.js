@@ -1,3 +1,4 @@
+import datepicker from "vuejs-datepicker"
 export default{
   name:"mapDia",
 	data(){
@@ -18,8 +19,10 @@ export default{
         buttonActiveViernes: false,
         buttonActiveSabado: false,
         buttonActivePull: false,
+        date: new Date(2016,7,18)
 	   	}
-	},
+  },
+  components: { datepicker },
 
 	mounted:function(){
     
