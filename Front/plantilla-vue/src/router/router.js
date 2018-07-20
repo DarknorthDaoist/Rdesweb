@@ -7,6 +7,7 @@ import Login from '../components/login/login.vue';
 
 Vue.use(VueRouter);
 
+//Consulta a bd de si esta logeado
 
 
 const router = new VueRouter({
@@ -24,6 +25,7 @@ router.beforeEach((to, from, next) => {
       if (true) {
           next();
     } else {
+
         next({
             path: '/login',
             query: { redirect: to.fullPath },

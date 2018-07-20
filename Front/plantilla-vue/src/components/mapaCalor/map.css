@@ -3,7 +3,9 @@
 	min-height: 100vh;
 	transition: all 0.3s;
 	height: 100%;
-	
+}
+.cuerpo{
+	width: 100%;
 }
 html, body {
 	height: 100%;
@@ -12,10 +14,8 @@ html, body {
 	height: 90%;
 }
 .botones{
-	padding-bottom:10px;  
-}
-.cuerpo{
-	height: 100%;
+	padding-bottom:10px;
+
 }
 .btn-default:hover{
 	color: #fff;

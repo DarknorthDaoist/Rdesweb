@@ -19,7 +19,8 @@ export default{
         buttonActiveViernes: false,
         buttonActiveSabado: false,
         buttonActivePull: false,
-        date: new Date(2016,7,18)
+        date: new Date(2016,7,18),
+        buttonActivePull: false
 	   	}
   },
   components: { datepicker },
@@ -33,6 +34,7 @@ export default{
   	methods:{
         collapseLey(){
           this.isActive = !this.isActive;
+          this.buttonActivePull =! this.buttonActivePull;
           // desde aqui hacer insercion de codigo en leyenda*
         },
         marcar(argument){
