@@ -112,6 +112,66 @@ public class SignalService {
         body.put("noche", signalNoche);
         return body;
     }
+
+    @GetMapping("/fecha/{fechaInico}/{fechaTermino}")
+    public Map<String, Object> getSignalsByIntervalo(@PathVariable("fechaInicio") String inicio ,@PathVariable("fechaTermino") String termino) throws JSONException, ParseException, CloneNotSupportedException {
+
+        Calendar cal= Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        Date actual=cal.getTime();
+
+        cal.add(Calendar.DAY_OF_YEAR, -30);
+        cal.set(Calendar.HOUR_OF_DAY, 23);
+        cal.set(Calendar.MINUTE,59);
+        cal.set(Calendar.SECOND,59);
+        Date anterior=cal.getTime();
+        // falta definir las fechas
+        List<Signal> signals=signalRepository.findAll();
+        List<Signal> signalsFecha=new ArrayList<Signal>();
+        ArrayList<Signal> signalMañana=new ArrayList<Signal>();
+        ArrayList<Signal> signalTarde=new ArrayList<Signal>();
+        ArrayList<Signal> signalNoche=new ArrayList<Signal>();
+
+        for(Signal signal : signals) {
+
+            if(signal.getFecha().after(anterior) && signal.getFecha().before(actual)) {
+                signalsFecha.add(signal);
+            }
+        }
+
+        for(Signal signal : signalsFecha) {
+
+            cal.setTime(signal.getFecha());
+            int hour=cal.get(Calendar.HOUR_OF_DAY);
+
+            if(hour>=6 && hour<=12) {
+
+                signalMañana.add(signal);
+            }
+            else if(hour>12 && hour <=18) {
+
+                signalTarde.add(signal);
+            }
+            else{
+                signalNoche.add(signal);
+            }
+        }
+
+        signalMañana=Signal.promediar(signalMañana);
+        signalMañana=Signal.asignarPesoClon(signalMañana);
+
+        signalTarde=Signal.promediar(signalTarde);
+        signalTarde=Signal.asignarPesoClon(signalTarde);
+
+        signalNoche=Signal.promediar(signalNoche);
+        signalNoche=Signal.asignarPesoClon(signalNoche);
+
+        Map<String, Object> body = new HashMap<String, Object>();
+        body.put("mañana", signalMañana);
+        body.put("tarde", signalTarde);
+        body.put("noche", signalNoche);
+        return body;
+    }
     
     @RequestMapping(method = RequestMethod.POST)
     @ResponseStatus(HttpStatus.CREATED)
