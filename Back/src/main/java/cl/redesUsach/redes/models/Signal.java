@@ -90,9 +90,9 @@ public class Signal implements Cloneable {
 
         ArrayList<Signal> promediados= new ArrayList<Signal>();
         for (int i=0;i<coordenadas.size();i++) {
-
+            System.out.println("**coordenadas:"+coordenadas.get(i).getLatitud()+","+coordenadas.get(i).longitud);
             int contador=1;
-            double acumulador= Double.parseDouble(coordenadas.get(i).getIntensidad());
+            double acumulador= Double.parseDouble(coordenadas.get(i).getVelocidad());
             for (int j=i+1; j<coordenadas.size();j++) {
                 if(coordenadas.get(i).getLatitud().equals(coordenadas.get(j).getLatitud()) &&
                         coordenadas.get(i).getLongitud().equals(coordenadas.get(j).getLongitud())) {
@@ -101,8 +101,11 @@ public class Signal implements Cloneable {
                    contador++;
                 }
 
+
             }
             double promedio=acumulador/contador;
+            System.out.println("**promedio es:"+ promedio);
+            System.out.println("**contador es:"+contador);
             String estado="UNKNOWN";
             if(promedio<150){
                 estado="POOR";
@@ -112,10 +115,12 @@ public class Signal implements Cloneable {
             }
             else if(promedio>=550 && promedio< 2000){
                 estado="GOOD";
+
             }
             else if(promedio>=2000){
                 estado="EXCELLENT";
             }
+            System.out.println("**es:"+estado);
             coordenadas.get(i).setVelocidad(String.valueOf(promedio));
             coordenadas.get(i).setEstado(estado);
             promediados.add(coordenadas.get(i));
@@ -145,7 +150,7 @@ public class Signal implements Cloneable {
            else{
                 repeticion=1;
             }
-
+            System.out.println("**repeticion:"+repeticion);
             for(int i=0;i<repeticion;i++){
                 clonados.add(coord.clone());
             }

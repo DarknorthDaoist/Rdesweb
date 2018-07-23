@@ -13,6 +13,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -113,9 +114,16 @@ public class SignalService {
         return body;
     }
 
-    @GetMapping("/fecha/{fechaInico}/{fechaTermino}")
-    public Map<String, Object> getSignalsByIntervalo(@PathVariable("fechaInicio") String inicio ,@PathVariable("fechaTermino") String termino) throws JSONException, ParseException, CloneNotSupportedException {
+    @PostMapping("/fechas")
+    public Map<String, Object> getSignalsByIntervalo(@RequestBody String json) throws JSONException, ParseException, CloneNotSupportedException {
 
+        JSONObject response = new JSONObject(json);
+        String inicio= response.getString("fechaInicio");
+        String termino= response.getString("fechaTermino");
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date fechaInicio =df.parse(inicio);
+        Date fechaTermino=df.parse(termino);
+        System.out.println(fechaInicio+"----"+fechaTermino);
         Calendar cal= Calendar.getInstance();
         cal.set(Calendar.HOUR_OF_DAY, 0);
         Date actual=cal.getTime();
@@ -132,10 +140,17 @@ public class SignalService {
         ArrayList<Signal> signalTarde=new ArrayList<Signal>();
         ArrayList<Signal> signalNoche=new ArrayList<Signal>();
 
-        for(Signal signal : signals) {
 
-            if(signal.getFecha().after(anterior) && signal.getFecha().before(actual)) {
+        for(Signal signal : signals) {
+            Date fechaAdaptada=df.parse(df.format(signal.getFecha()));
+            System.out.println(fechaAdaptada);
+            System.out.println("*****"+signal.getFecha().compareTo(fechaInicio));
+            System.out.println("****"+signal.getFecha().compareTo(fechaTermino));
+
+            if((fechaAdaptada.compareTo(fechaInicio)==0  || fechaAdaptada.compareTo(fechaInicio)==1) &&
+                    (fechaAdaptada.compareTo(fechaTermino)==0  || fechaAdaptada.compareTo(fechaTermino)==-1) ){
                 signalsFecha.add(signal);
+                System.out.println("****************agregando****************************");
             }
         }
 
@@ -147,13 +162,16 @@ public class SignalService {
             if(hour>=6 && hour<=12) {
 
                 signalMañana.add(signal);
+                System.out.println("agregando en mañana");
             }
             else if(hour>12 && hour <=18) {
 
                 signalTarde.add(signal);
+                System.out.println("agregando en tarde");
             }
             else{
                 signalNoche.add(signal);
+                System.out.println("agregando en noche");
             }
         }
 
