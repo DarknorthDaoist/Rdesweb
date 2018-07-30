@@ -94,10 +94,10 @@ public class Signal implements Cloneable {
             int contador=1;
             double acumulador= Double.parseDouble(coordenadas.get(i).getVelocidad());
             for (int j=i+1; j<coordenadas.size();j++) {
-                if(coordenadas.get(i).getLatitud().equals(coordenadas.get(j).getLatitud()) &&
+                if( coordenadas.get(i) != null && coordenadas.get(i).getLatitud().equals(coordenadas.get(j).getLatitud()) &&
                         coordenadas.get(i).getLongitud().equals(coordenadas.get(j).getLongitud())) {
                    acumulador+=Double.parseDouble(coordenadas.get(j).getVelocidad());
-                   coordenadas.remove(j);
+                   coordenadas.set(j,null);
                    contador++;
                 }
 
