@@ -90,11 +90,14 @@ public class Signal implements Cloneable {
 
         ArrayList<Signal> promediados= new ArrayList<Signal>();
         for (int i=0;i<coordenadas.size();i++) {
+            if(coordenadas.get(i) != null){
+
+
             System.out.println("**coordenadas:"+coordenadas.get(i).getLatitud()+","+coordenadas.get(i).longitud);
             int contador=1;
             double acumulador= Double.parseDouble(coordenadas.get(i).getVelocidad());
             for (int j=i+1; j<coordenadas.size();j++) {
-                if( coordenadas.get(i) != null && coordenadas.get(i).getLatitud().equals(coordenadas.get(j).getLatitud()) &&
+                if( coordenadas.get(j) != null && coordenadas.get(i).getLatitud().equals(coordenadas.get(j).getLatitud()) &&
                         coordenadas.get(i).getLongitud().equals(coordenadas.get(j).getLongitud())) {
                    acumulador+=Double.parseDouble(coordenadas.get(j).getVelocidad());
                    coordenadas.set(j,null);
@@ -125,7 +128,7 @@ public class Signal implements Cloneable {
             coordenadas.get(i).setEstado(estado);
             promediados.add(coordenadas.get(i));
 
-
+            }
         }
         return promediados;
 
