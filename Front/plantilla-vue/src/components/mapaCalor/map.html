@@ -1,6 +1,6 @@
 <div class="cuerpo wrapper">
 	<div class="cuerpo" id="pagMapa">
-		<div class="botones" >
+		<div class="botones">
 			<ul class="nav nav-pills nav-justified">
 				<!--<li class="nav-item">
 					<a class="nav-link"@click="marcar('lunes')" v-bind:class = "{active: buttonActiveLunes}">Lunes</a>
@@ -21,29 +21,38 @@
 					<a class="nav-link " @click="marcar('sabado')" v-bind:class = "{active: buttonActiveSabado}">Sabado</a>
 				</li>-->
 				<li class="nav-item">
-					<a class="nav-link" @click="collapseLey" v-bind:class = "{active: buttonActivePull}" style = "float:right">Mostrar Leyenda</a>
+					<a class="nav-link" @click="collapseLey" v-bind:class="{active: buttonActivePull}" style="float:right">Mostrar Leyenda</a>
 				</li>
 			</ul>
 		</div>
-		<div class = "calendar">
-			<datepicker :v-model = "date" name = "uniquename" placeholder = "Seleccione una fecha"></datepicker>
+		<div class="calendar">
+			<datepicker v-model="fechaInicio" name="uniquename2" placeholder=" fecha inicial"></datepicker>
 		</div>
-		<div class = "horario">
-			<form action = "">
-				<input type = "radio" name = "hour" value = ""> Mañana (8-12)  
-				<input type = "radio" name = "hour" value = ""> Tarde (12 -17)  
-				<input type = "radio" name = "hour" value = ""> Noche (18-24)  
-				<!--<button type = "button" class = "btn btn-default btn-md myBtn">Enviar</button>!-->
+		<div class="calendar">
+
+			<datepicker v-model="fechaTermino" name="uniquename3" placeholder="fecha final"></datepicker>
+		</div>
+		
+		<div class="horario">
+			<form action="">
+				<input type="radio" name="hour" v-model="horario" value="mañana"> Mañana (8-12)
+				<input type="radio" name="hour" v-model="horario" value="tarde"> Tarde (12 -17)
+				<input type="radio" name="hour" v-model="horario" value="noche"> Noche (18-24)
+				<button type = "button" @click="loadDataMap" class = "btn btn-default btn-md myBtn">Enviar</button>
 			</form>
+		
+		</div>
+		<div>
+		<!-- <button></button>	 -->
 		</div>
 		<div id="map"></div>
 	</div>
-	<nav id="leyenda" v-bind:class = "{active: isActive}">
+	<nav id="leyenda" v-bind:class="{active: isActive}">
 		<div class="header-bar">
 			<h3></h3>
 		</div>
 		<div class="contLey">
-			
+
 		</div>
 	</nav>
 </div>
