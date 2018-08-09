@@ -176,13 +176,13 @@ public class SignalService {
         }
 
         signalMañana=Signal.promediar(signalMañana);
-        signalMañana=Signal.asignarPesoClon(signalMañana);
+//        signalMañana=Signal.asignarPesoClon(signalMañana);
 
         signalTarde=Signal.promediar(signalTarde);
-        signalTarde=Signal.asignarPesoClon(signalTarde);
+//        signalTarde=Signal.asignarPesoClon(signalTarde);
 
         signalNoche=Signal.promediar(signalNoche);
-        signalNoche=Signal.asignarPesoClon(signalNoche);
+//        signalNoche=Signal.asignarPesoClon(signalNoche);
 
         Map<String, Object> body = new HashMap<String, Object>();
         body.put("mañana", signalMañana);

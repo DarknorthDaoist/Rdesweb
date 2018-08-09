@@ -1,5 +1,6 @@
 package cl.redesUsach.redes.models;
 
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -14,11 +15,12 @@ public class Signal implements Cloneable {
     private String id;
     private String latitud;
     private String longitud;
-   
+    private double weight;
+
     @JsonFormat(pattern = "dd/MM/yyyy HH:mm",timezone="GMT-4")
     @DateTimeFormat(pattern = "dd/MM/yyyy HH:mm")
     private Date fecha;
-    
+
     private String estado;
 
     private String velocidad;
@@ -30,6 +32,12 @@ public class Signal implements Cloneable {
         return clon;
     }
 
+    public double getWeight(){
+        return weight;
+    }
+    public void setWeight(double weight){
+        this.weight=weight;
+    }
     public String  getId() {
         return id;
     }
@@ -75,97 +83,107 @@ public class Signal implements Cloneable {
     }
 
     public String getEstado() {
-		return estado;
-	}
+        return estado;
+    }
 
-	public Date getFecha() {
-		return fecha;
-	}
+    public Date getFecha() {
+        return fecha;
+    }
 
-	public void setFecha(Date fecha) {
-		this.fecha = fecha;
-	}
+    public void setFecha(Date fecha) {
+        this.fecha = fecha;
+    }
 
-	public static  ArrayList<Signal> promediar(ArrayList<Signal> coordenadas){
+    public static  ArrayList<Signal> promediar(ArrayList<Signal> coordenadas){
 
         ArrayList<Signal> promediados= new ArrayList<Signal>();
         for (int i=0;i<coordenadas.size();i++) {
             if(coordenadas.get(i) != null){
 
+                System.out.println("**coordenadas:"+coordenadas.get(i).getLatitud()+","+coordenadas.get(i).longitud);
+                int contador=1;
+                double acumulador= Double.parseDouble(coordenadas.get(i).getVelocidad());
+                for (int j=i+1; j<coordenadas.size();j++) {
+                    if( coordenadas.get(j) != null && coordenadas.get(i).getLatitud().equals(coordenadas.get(j).getLatitud()) &&
+                            coordenadas.get(i).getLongitud().equals(coordenadas.get(j).getLongitud())) {
+                        acumulador+=Double.parseDouble(coordenadas.get(j).getVelocidad());
+                        coordenadas.set(j,null);
+                        contador++;
+                    }
 
-            System.out.println("**coordenadas:"+coordenadas.get(i).getLatitud()+","+coordenadas.get(i).longitud);
-            int contador=1;
-            double acumulador= Double.parseDouble(coordenadas.get(i).getVelocidad());
-            for (int j=i+1; j<coordenadas.size();j++) {
-                if( coordenadas.get(j) != null && coordenadas.get(i).getLatitud().equals(coordenadas.get(j).getLatitud()) &&
-                        coordenadas.get(i).getLongitud().equals(coordenadas.get(j).getLongitud())) {
-                   acumulador+=Double.parseDouble(coordenadas.get(j).getVelocidad());
-                   coordenadas.set(j,null);
-                   contador++;
+
                 }
+                double promedio=acumulador/contador;
+                System.out.println("**promedio es:"+ promedio);
+                System.out.println("**contador es:"+contador);
+                String estado="UNKNOWN";
+                double peso=0.0;
 
+                if(promedio<150){
+                    estado="POOR";
+                    peso=0.2;
+                }
+                else if(promedio>=150 && promedio<550){
+                    estado="MODERATE";
+                    peso=0.5;
 
+                }
+                else if(promedio>=550 && promedio< 2000){
+                    estado="GOOD";
+                    peso=1;
+                }
+                else if(promedio>=2000){
+                    estado="EXCELLENT";
+                    peso=3;
+                }
+                System.out.println("**es:"+estado);
+                coordenadas.get(i).setVelocidad(String.valueOf(promedio));
+                coordenadas.get(i).setEstado(estado);
+                coordenadas.get(i).setWeight(peso);
+                promediados.add(coordenadas.get(i));
             }
-            double promedio=acumulador/contador;
-            System.out.println("**promedio es:"+ promedio);
-            System.out.println("**contador es:"+contador);
-            String estado="UNKNOWN";
-            if(promedio<150){
-                estado="POOR";
-            }
-            else if(promedio>=150 && promedio<550){
-                estado="MODERATE";
-            }
-            else if(promedio>=550 && promedio< 2000){
-                estado="GOOD";
 
-            }
-            else if(promedio>=2000){
-                estado="EXCELLENT";
-            }
-            System.out.println("**es:"+estado);
-            coordenadas.get(i).setVelocidad(String.valueOf(promedio));
-            coordenadas.get(i).setEstado(estado);
-            promediados.add(coordenadas.get(i));
-
-            }
         }
         return promediados;
 
     }
 
-    public static ArrayList<Signal> asignarPesoClon(ArrayList<Signal> coordenadas) throws CloneNotSupportedException {
-        ArrayList<Signal> clonados= new ArrayList<Signal>();
-        for (Signal coord: coordenadas) {
-            int repeticion=0;
-            if(coord.getEstado().equals("POOR")){
-                repeticion=2;
-            }
-            else if(coord.getEstado().equals("MODERATE")){
-                repeticion=3;
-            }
-            else if(coord.getEstado().equals("GOOD")){
-                repeticion=4;
-            }
-            else if(coord.getEstado().equals("EXCELLENT")){
-                repeticion=6;
-            }
-           else{
-                repeticion=1;
-            }
-            System.out.println("**repeticion:"+repeticion);
-            for(int i=0;i<repeticion;i++){
-                clonados.add(coord.clone());
-            }
-            
-        }
-        return clonados;
+//    public static ArrayList<Signal> asignarPesoClon(ArrayList<Signal> coordenadas) throws CloneNotSupportedException {
+//        ArrayList<Signal> clonados= new ArrayList<Signal>();
+//        for (Signal coord: coordenadas) {
+//            int repeticion=1;
+//            if(coord.getEstado().equals("POOR")){
+//                coord.setWeight(0.2);
+//                //repeticion=2;
+//            }
+//            else if(coord.getEstado().equals("MODERATE")){
+//                coord.setWeight(0.5);
+//                //repeticion=8;
+//            }
+//            else if(coord.getEstado().equals("GOOD")){
+//                coord.setWeight(1);
+//                //repeticion=14;
+//            }
+//            else if(coord.getEstado().equals("EXCELLENT")){
+//                coord.setWeight(3);
+//                //repeticion=36;
+//            }
+//            else{
+//                repeticion=1;
+//            }
+//            System.out.println("**repeticion:"+repeticion);
+//            for(int i=0;i<repeticion;i++){
+//                clonados.add(coord.clone());
+//            }
+//
+//        }
+//        return clonados;
+//
+//
+//
+//    }
 
 
 
-    }
 
-	
-    
-    
 }
