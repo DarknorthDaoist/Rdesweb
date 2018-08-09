@@ -25,25 +25,30 @@
 				</li>
 			</ul>
 		</div>
-		<div class="calendar">
-			<datepicker v-model="fechaInicio" name="uniquename2" placeholder=" fecha inicial"></datepicker>
-		</div>
-		<div class="calendar">
+		<div class="panel">
 
-			<datepicker v-model="fechaTermino" name="uniquename3" placeholder="fecha final"></datepicker>
-		</div>
-		
-		<div class="horario">
-			<form action="">
-				<input type="radio" name="hour" v-model="horario" value="mañana"> Mañana (8-12)
-				<input type="radio" name="hour" v-model="horario" value="tarde"> Tarde (12 -17)
-				<input type="radio" name="hour" v-model="horario" value="noche"> Noche (18-24)
-				<button type = "button" @click="loadDataMap" class = "btn btn-default btn-md myBtn">Enviar</button>
-			</form>
-		
-		</div>
-		<div>
-		<!-- <button></button>	 -->
+			<div class="calendar panel">
+				<datepicker v-model="fechaInicio" name="uniquename2" placeholder=" fecha inicial"></datepicker>
+				<datepicker v-model="fechaTermino" name="uniquename3" placeholder="fecha final"></datepicker>
+			</div>
+			<!-- <div class="calendar">
+				
+			</div>
+			 -->
+			<div class="horario">
+				<form action="">
+					<input type="radio" name="hour" v-model="horario" value="mañana"> Mañana (8-12)
+					<input type="radio" name="hour" v-model="horario" value="tarde"> Tarde (12 -17)
+					<input type="radio" name="hour" v-model="horario" value="noche"> Noche (18-24)
+				</form>
+			</div>
+			<div class="panel">
+
+				<Spinner v-if="cargando" style="margin-right: 30px"></Spinner>
+				<button type = "button" @click="loadDataMap" class = "btn btn-default btn-md myBtn">Generar</button>
+			
+			</div>
+			
 		</div>
 		<div id="map"></div>
 	</div>

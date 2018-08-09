@@ -11,7 +11,13 @@ html, body {
 	height: 100%;
 }
 #map {
-	height: 90%;
+	height: 80%;
+}
+.panel{
+	display: flex;
+	background: none;
+	justify-content: space-around;
+	 
 }
 .botones{
 	padding-bottom:10px;
