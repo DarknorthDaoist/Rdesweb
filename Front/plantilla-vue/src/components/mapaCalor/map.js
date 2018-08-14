@@ -34,7 +34,7 @@ export default {
     this.getPointsExcellent();
     this.getPointsGood();
     this.initMap();
-    this.pintarMapa();
+    // this.pintarMapa();
   },
   methods: {
     collapseLey() {
@@ -82,7 +82,7 @@ export default {
     initMap: function () {
       this.map = new google.maps.Map(document.getElementById("map"), {
         zoom: 19,
-        // center: {lat: -33.451978, lng:  -70.683062},
+        center: {lat: -33.451978, lng:  -70.683062},
         mapTypeId: 'satellite',
 
         center: { lat: -33.450183, lng: -70.686587 },
@@ -155,8 +155,48 @@ export default {
     toggleHeatmap: function () {
       this.heatmapExcellent.setMap( this.heatmapExcellent.getMap() ? null : map);
     },
+    pintarMapa: function(){
+      
+      this.heatmapExcellent = new google.maps.visualization.HeatmapLayer({
+        data: this.dExcellent,
+        map: this.map,
+        radius: 20,
+        // gradient: [ 'rgba(0, 255, 255, 0)', 
+        //             'rgba(0, 255, 255, 0)', 
+        //             'rgba(0, 191, 255, 0)', 
+        //             'rgba(0, 127, 255, 0)', 
+        //             'rgba(0, 63, 255, 0)', 
+        //             'rgba(255, 0, 0, 1)', 
+        //             'rgba(255, 0, 0, 1)', 
+        //             'rgba(255, 0, 0, 1)', 
+        //             'rgba(255, 0, 0, 1)', 
+        //             'rgba(255, 0, 0, 1)', 
+        //             'rgba(255, 0, 0, 1)', 
+        //             'rgba(255, 0, 0, 1)', 
+        //             'rgba(255, 0, 0, 1)', 
+        //             'rgba(255, 0, 0, 1)'] 
+        // gradient: [
+        //   'rgba(0, 255, 255, 0)',
+        //   'rgba(0, 255, 255, 1)',
+        //   'rgba(0, 191, 255, 1)',
+        //   'rgba(0, 127, 255, 1)',
+        //   'rgba(0, 63, 255, 1)',
+        //   'rgba(0, 0, 255, 1)',
+        //   'rgba(0, 0, 223, 1)',
+        //   'rgba(0, 0, 191, 1)',
+        //   'rgba(0, 0, 159, 1)',
+        //   'rgba(0, 0, 127, 1)',
+        //   'rgba(63, 0, 91, 1)',
+        //   'rgba(127, 0, 63, 1)',
+        //   'rgba(191, 0, 31, 1)',
+        //   'rgba(255, 0, 0, 1)'
+        // ]
 
 
+
+      });
+    }
+    ,
     getPointsExcellent: function () {
       console.log('funcionando');
       var i, linea, mapData;
@@ -206,8 +246,8 @@ export default {
       //   fechaTermino: this.fechaTermino
       // }
       this.dExcellent = [];
-      console.log(intervalo);
-      console.log(this.horario)
+      // console.log(intervalo);
+      // console.log(this.horario)
       // se realiza peticion post al servidor para obtener los datos en el intervalo de fechas
       this.$http.post('http://206.189.184.79:8091/redes/signals/fechas', intervalo)
         .then(response => {
@@ -231,7 +271,10 @@ export default {
           }
           
           this.cargando=false;
+        
           this.heatmapExcellent.set('data',this.dExcellent);
+          // this.initMap();
+          
         }, response => {
           this.cargando=false;
           alert("no es posible conectar con la base de datos")
