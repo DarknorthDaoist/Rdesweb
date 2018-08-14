@@ -11,30 +11,44 @@ Vue.use(VueRouter);
 
 
 const router = new VueRouter({
-    routes:[
-        { path: '/index', alias:"/", component: Index},
-        { path: '/login', name:"login", component: Login},
-        { path: '/mapadia', alias: '/dia', component: Mapa, meta: { requiresAuth: true} },
-        { path: '/mapacalidad', alias: '/calidad', component: MapaC, meta: { requiresAuth: true} }
+    routes: [
+        { path: '/index', alias: "/", name: "inicio", component: Index, meta: { requiresAuth: true } },
+        { path: '/login', name: "login", component: Login,meta: { requiresLogin: true } },
+        { path: '/mapadia', alias: '/dia',name:"dia", component: Mapa, meta: { requiresAuth: true } },
+        { path: '/mapacalidad', alias: '/calidad', component: MapaC, meta: { requiresAuth: true } }
     ]
 });
 
 // Aqui hay que agregar el tema del logeo, en el true la verificacion si esta logeado 
 router.beforeEach((to, from, next) => {
     if (to.matched.some(record => record.meta.requiresAuth)) {
-      if (true) {
-          next();
-    } else {
+        if (sessionStorage.getItem('auth') == null) {
+            next({
+                path: '/login',
+                query: { redirect: to.fullPath },
+            });
+        } else {
 
-        next({
-            path: '/login',
-            query: { redirect: to.fullPath },
-          });
-      }
-    } 
-    else {
-      next();
+            next();
+        }
     }
-  });
+    else if (to.matched.some(record => record.meta.requiresLogin)) {
+        if (sessionStorage.getItem('auth') == null) {
+            next();
+        } else {
+                next({
+                    path: '/dia',
+                    query: { redirect: to.fullPath },
+                });
+
+        }
+     
+    }
+
+    else {
+        next();
+    }
+});
 
 export default router
+
