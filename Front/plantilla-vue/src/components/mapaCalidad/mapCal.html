@@ -1,40 +1,74 @@
 <div class="cuerpo wrapper">
-	<div class="cuerpo" id="pagMapa"> 
+	<div class="cuerpo" id="pagMapa">
 		<div class="botones">
 			<ul class="nav nav-pills nav-justified">
-				<li class="nav-item">
-					<a class="nav-link" @click="marcar('exelente')" v-bind:class = "{active: bActiveE}">Exelente</a>
+				<!--<li class="nav-item">
+					<a class="nav-link"@click="marcar('lunes')" v-bind:class = "{active: buttonActiveLunes}">Lunes</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" @click="marcar('bueno')" v-bind:class = "{active: bActiveB}">Bueno</a>
+					<a class="nav-link"@click="marcar('martes')" v-bind:class = "{active: buttonActiveMartes}">Martes</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" @click="marcar('moderado')" v-bind:class = "{active: bActiveM}">Moderado</a>
+					<a class="nav-link"@click="marcar('miercoles')" v-bind:class = "{active: buttonActiveMiercoles}">Miercoles</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link " @click="marcar('malo')" v-bind:class = "{active: bActiveMa}">Malo</a>
+					<a class="nav-link " @click="marcar('jueves')" v-bind:class = "{active: buttonActiveJueves}">Jueves</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link " @click="marcar('desconocido')" v-bind:class = "{active: bActiveD}">Desconocido</a>
-				</li> 
-				<li class="nav-item">
-					<a class="nav-link" @click="collapseLey" v-bind:class = "{active: buttonActivePull}">Mostrar Leyenda</a>
+					<a class="nav-link " @click="marcar('viernes')" v-bind:class = "{active: buttonActiveViernes}">Viernes</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link " @click="marcar('sabado')" v-bind:class = "{active: buttonActiveSabado}">Sabado</a>
+				</li>-->
+				<!--<li class="nav-item">
+					<a class="nav-link" @click="collapseLey" v-bind:class="{active: buttonActivePull}" style="float:right">Mostrar Leyenda</a>
+				</li>-->
 			</ul>
 		</div>
-		
+		<div class="panel">
+
+			<div class="calendar panel">
+				<datepicker  placeholder="fecha inicial" v-model="fechaInicio" name="uniquename2"></datepicker>
+				<datepicker placeholder="fecha termino" v-model="fechaTermino" name="uniquename3"></datepicker>
+			</div>
+			<!-- <div class="calendar">
+				
+			</div>
+			 -->
+			<div class="horario">
+				<form action="">
+					<input type="radio" name="hour" v-model="horario" value="mañana"> Mañana (8-12)
+					<input type="radio" name="hour" v-model="horario" value="tarde"> Tarde (12 -17)
+					<input type="radio" name="hour" v-model="horario" value="noche"> Noche (18-24)
+				</form>
+			</div>
+			<div class="panel">
+
+				<Spinner v-if="cargando" style="margin-right: 30px"></Spinner>
+				<button type = "button" @click="loadDataMap" class = "btn btn-default btn-md myBtn">Generar</button>
+			
+			</div>
+			
+		</div>
 		<div id="map"></div>
+		<div id = "legend3" v-bind:style = "{ 'display' : display }"  class = "container-fluid legend2" >
+			<!-- <div id = "legendGradient">
+				
+			</div> -->
+			<div   style="display:flex;justify-content:center">
+
+				<div class = "significado" style="display:flex;align-items: center;align-content: center">
+					<div class="bg-success circulo" style = "background: #44f310; " ></div>
+					<span class = "miInline" >Mala</span>
+					<div class="bg-success  circulo " style = "background: #f3e610" ></div>
+					<span class = "miInline" >Moderada</span>
+					<div class="bg-success circulo" style = "background: #f37010" ></div>
+					<span class = "miInline" >Buena</span>
+					<div class="bg-success circulo" style = "background: #f31010 ; " ></div>
+					<span class = "miInline">Excelente</span>
+				</div>
+				
+			</div>
+		</div>
 	</div>
-	<nav id="leyenda" v-bind:class = "{active: isActive}">
-		<div class="header-bar">
-			<h3>ajksdasjkbda</h3>
-			<h3>ajksdasjkbda</h3>
-			<h3>ajksdasjkbda</h3>
-			<h3>ajksdasjkbda</h3>
-			
-		</div>
-		<div class="contLey">
-			
-		</div>
-	</nav>
 </div>

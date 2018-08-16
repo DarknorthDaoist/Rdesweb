@@ -288,7 +288,7 @@ export default {
           
           
           
-          //document.body.getElementById("legend3").style.display = "block";
+          document.body.getElementById("legend3").style.display = "block";
           // this.initMap();
           
         }, response => {

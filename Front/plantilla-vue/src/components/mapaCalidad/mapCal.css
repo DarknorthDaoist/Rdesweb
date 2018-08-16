@@ -3,19 +3,25 @@
 	min-height: 100vh;
 	transition: all 0.3s;
 	height: 100%;
-	
+}
+.cuerpo{
+	width: 100%;
 }
 html, body {
 	height: 100%;
 }
 #map {
-	height: 90%;
+	height: 80%;
+}
+.panel{
+	display: flex;
+	background: none;
+	justify-content: space-around;
+	 
 }
 .botones{
-	padding-bottom:10px;  
-}
-.cuerpo{
-	height: 100%;
+	padding-bottom:10px;
+
 }
 .btn-default:hover{
 	color: #fff;
@@ -29,6 +35,7 @@ html, body {
 	color: #6C0500;
 }
 
+/* Tab Leyenda */
 #leyenda {
     min-width: 0px;
     max-width: 0px;
@@ -40,4 +47,41 @@ html, body {
     min-width: 200px;
     max-width: 200px;
 }
+	
+.calendar{
+	margin-bottom: 10px;
+}
 
+.horario{
+	color:whitesmoke;
+	margin-bottom: 5px;
+}
+
+.myBtn{
+	border-radius:0px;
+	margin-left:10px;
+}
+
+#legendGradient{
+	background: linear-gradient(to right,green,yellow, red);
+	height: 25px;
+	border: 1px solid black;
+}
+
+.legend2{
+	margin-top:5px;
+	width: 700px;
+}
+.miInline{
+	display:inline-block;
+	color:white;
+}
+.circulo{
+	
+	margin-right: 8px;
+	margin-left: 15px;
+	padding: 0px 0px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+}
