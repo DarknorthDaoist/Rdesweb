@@ -9,3 +9,7 @@
     min-height: 100vh;
     transition: all 0.3s;
 }
+
+body{
+    background-color: #910700;
+}

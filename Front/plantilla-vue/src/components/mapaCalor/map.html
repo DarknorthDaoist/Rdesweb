@@ -20,16 +20,16 @@
 				<li class="nav-item">
 					<a class="nav-link " @click="marcar('sabado')" v-bind:class = "{active: buttonActiveSabado}">Sabado</a>
 				</li>-->
-				<li class="nav-item">
+				<!--<li class="nav-item">
 					<a class="nav-link" @click="collapseLey" v-bind:class="{active: buttonActivePull}" style="float:right">Mostrar Leyenda</a>
-				</li>
+				</li>-->
 			</ul>
 		</div>
 		<div class="panel">
 
 			<div class="calendar panel">
-				<datepicker v-model="fechaInicio" name="uniquename2" placeholder=" fecha inicial"></datepicker>
-				<datepicker v-model="fechaTermino" name="uniquename3" placeholder="fecha final"></datepicker>
+				<datepicker  placeholder="fecha inicial" v-model="fechaInicio" name="uniquename2"></datepicker>
+				<datepicker placeholder="fecha termino" v-model="fechaTermino" name="uniquename3"></datepicker>
 			</div>
 			<!-- <div class="calendar">
 				
@@ -51,13 +51,17 @@
 			
 		</div>
 		<div id="map"></div>
-	</div>
-	<nav id="leyenda" v-bind:class="{active: isActive}">
-		<div class="header-bar">
-			<h3></h3>
-		</div>
-		<div class="contLey">
+		<div id = "legend3" class = "container-fluid legend2" v-bind:style = "{ 'display' : display }">
+			<div id = "legendGradient">
+				
+			</div>
+			<div class = "significado">
+				<span class = "miInline" style = "padding-left:2px;padding-right: 140px;">Mala</span>
+				<span class = "miInline" style = "padding-right: 130px;">Moderada</span>
+				<span class = "miInline" style = "padding-right: 120px;">Buena</span>
+				<span class = "miInline">Excelente</span>
+			</div>
 
 		</div>
-	</nav>
+	</div>
 </div>

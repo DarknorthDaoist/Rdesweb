@@ -9,3 +9,7 @@ a, a:focus{
     text-decoration: none;
     transition: all 0.3s;
 }
+
+body{
+    background-color: #6C0500 !important;
+}

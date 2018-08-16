@@ -1,5 +1,6 @@
 import datepicker from "vuejs-datepicker"
 import Spinner from 'vue-simple-spinner'
+import leyend from '../leyend/leyend.vue'
 export default {
   name: "mapDia",
   data() {
@@ -8,7 +9,7 @@ export default {
       map: [],
       heatmapExcellent: [],
       heatmapGood: [],
-
+      see: true,
       dExcellent: [],
       dGood: [],
       dModerate: [],
@@ -20,14 +21,15 @@ export default {
       buttonActiveViernes: false,
       buttonActiveSabado: false,
       buttonActivePull: false,
-      fechaInicio: new Date(),
-      fechaTermino: new Date(),
+      fechaInicio: "",
+      fechaTermino: "",
       horario: '',
       buttonActivePull: false,
-      cargando:false
+      cargando:false,
+      display:'none'
     }
   },
-  components: { datepicker,Spinner },
+  components: { datepicker,Spinner, leyend },
 
   mounted: function () {
 
@@ -231,10 +233,11 @@ export default {
           console.log('error cargando lista2');
         });
     },
+    
     loadDataMap: function () {
       this.cargando=true;
       console.log('funcionando');
-
+      
       var i, linea, mapData, intervalo;
       //se crear json con las fechas
       intervalo = {
@@ -252,9 +255,13 @@ export default {
       this.$http.post('http://206.189.184.79:8091/redes/signals/fechas', intervalo)
         .then(response => {
           //dependiendo se la opcion seleccionda se accede a uno de los 3 arreglos con las coordenadas
+          if(this.horario != ''){
+            this.display = 'block';
+          
           this.horario == 'mañana' ? mapData = response.body.mañana
             : this.horario == 'tarde' ? mapData = response.body.tarde
               : mapData = response.body.noche;
+          
 
           // console.log("excellent", mapData);
           console.log(response);
@@ -273,6 +280,15 @@ export default {
           this.cargando=false;
         
           this.heatmapExcellent.set('data',this.dExcellent);
+        }
+        else{
+          this.cargando=false;
+          alert('Ha olvidado ingresar el rango horario')
+        } 
+          
+          
+          
+          //document.body.getElementById("legend3").style.display = "block";
           // this.initMap();
           
         }, response => {
@@ -281,6 +297,7 @@ export default {
           console.log('error cargando lista1 ');
         });
 
+      
     }
   }
 }

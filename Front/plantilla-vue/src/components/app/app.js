@@ -1,4 +1,4 @@
-import sidebar from '../sidebar/sidebar.vue'
+import sidebar from '../sidebar/sidebar.vue';
 
 export default {
   data() {
@@ -29,6 +29,7 @@ export default {
     // }
   },
   components: {
-    sidebar
+    sidebar,
+    
   }
 }

@@ -2,6 +2,7 @@ export default {
   data() {
     return {
       isActive: true,
+      isLegendActivate: false,
       // authenticated
     }
   },
@@ -14,6 +15,9 @@ export default {
   // },
     collapseSide(){
       this.isActive = !this.isActive;
+    },
+    show_legend(){
+      this.isLegendActivate = !this.isLegendActivate;
     },
     logout(){
       var opcion = confirm("¿Esta seguro de que desea salir?");

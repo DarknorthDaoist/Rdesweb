@@ -61,3 +61,18 @@ html, body {
 	border-radius:0px;
 	margin-left:10px;
 }
+
+#legendGradient{
+	background: linear-gradient(to right,green,yellow, red);
+	height: 25px;
+	border: 1px solid black;
+}
+
+.legend2{
+	margin-top:5px;
+	width: 700px;
+}
+.miInline{
+	display:inline-block;
+	color:white;
+}
