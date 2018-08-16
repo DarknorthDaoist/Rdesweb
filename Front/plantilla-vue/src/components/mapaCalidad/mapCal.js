@@ -236,17 +236,21 @@ export default {
     },
     
     loadDataMap: function () {
-      this.cargando=true;
-      console.log('funcionando');
-      
-      var i, linea, mapData, intervalo;
-      //se crear json con las fechas
-      intervalo = {
-        fechaInicio: this.fechaInicio.getFullYear() + "-0" + (this.fechaInicio.getMonth() + 1) + "-" + this.fechaInicio.getDate(),
-        fechaTermino: this.fechaTermino.getFullYear() + "-0" + (this.fechaTermino.getMonth() + 1) + "-" + this.fechaTermino.getDate()
+      if(this.fechaInicio=="" || this.fechaTermino==""  || this.horario=="") {
+        alert('Ha olvidado ingresar el rango horario')
       }
-      // intervalo={
-      //   fechaInicio:this.fechaInicio,
+      else{
+        this.cargando=true;
+        console.log('funcionando');
+
+        var i, linea, mapData, intervalo;
+        //se crear json con las fechas
+        intervalo = {
+          fechaInicio: this.fechaInicio.getFullYear() + "-0" + (this.fechaInicio.getMonth() + 1) + "-" + this.fechaInicio.getDate(),
+          fechaTermino: this.fechaTermino.getFullYear() + "-0" + (this.fechaTermino.getMonth() + 1) + "-" + this.fechaTermino.getDate()
+        }
+        // intervalo={
+          //   fechaInicio:this.fechaInicio,
       //   fechaTermino: this.fechaTermino
       // }
       this.dExcellent = [];
@@ -254,62 +258,62 @@ export default {
       // console.log(this.horario)
       // se realiza peticion post al servidor para obtener los datos en el intervalo de fechas
       this.$http.post('http://206.189.184.79:8091/redes/signals/fechas', intervalo)
-        .then(response => {
-          //dependiendo se la opcion seleccionda se accede a uno de los 3 arreglos con las coordenadas
+      .then(response => {
+        //dependiendo se la opcion seleccionda se accede a uno de los 3 arreglos con las coordenadas
           if(this.horario != ''){
             this.display = 'block';
-          
-          this.horario == 'mañana' ? mapData = response.body.mañana
+            
+            this.horario == 'mañana' ? mapData = response.body.mañana
             : this.horario == 'tarde' ? mapData = response.body.tarde
-              : mapData = response.body.noche;
-          
-
-          // console.log("excellent", mapData);
-          console.log(response);
-          this.circle.map(cir =>(cir.setMap(null)));
-          this.circle=[];
-          //se agregan los datos al mapa
-          for (i = 0; i < mapData.length; i++) {
-            // se agregan latidu y logitud, asi como el peso
-            // el peso define la calidad de la señal, mientras mas alto mejor (se ve mas rojo)
-
-            // linea = { location: new google.maps.LatLng(mapData[i].latitud, mapData[i].longitud), weight: mapData[i].weight }
-
-            // this.dExcellent.push(linea);
-             var color;
-            if(mapData[i].estado=="POOR"){
-              color="#44f310";
-            }else if(mapData[i].estado=="MODERATE"){
-              color="#f3e610";
-            }else if(mapData[i].estado=="GOOD"){
-              color="#f37010";
-            }else if(mapData[i].estado=="EXCELLENT"){
-              color=" #f31010 ";
-            }
-
-             this.circle.push(  new google.maps.Circle({
-              strokeColor: '#44f310',
-              strokeOpacity: 0,
-              strokeWeight: 0,
-              fillColor:color,
-              fillOpacity: 0.8,
-              map: this.map,
-              center:{lat:parseFloat(mapData[i].latitud), lng:parseFloat(mapData[i].longitud)},
+            : mapData = response.body.noche;
+            
+            
+            // console.log("excellent", mapData);
+            console.log(response);
+            this.circle.map(cir =>(cir.setMap(null)));
+            this.circle=[];
+            //se agregan los datos al mapa
+            for (i = 0; i < mapData.length; i++) {
+              // se agregan latidu y logitud, asi como el peso
+              // el peso define la calidad de la señal, mientras mas alto mejor (se ve mas rojo)
               
-              radius: 4
-            }));
+              // linea = { location: new google.maps.LatLng(mapData[i].latitud, mapData[i].longitud), weight: mapData[i].weight }
+              
+              // this.dExcellent.push(linea);
+              var color;
+              if(mapData[i].estado=="POOR"){
+                color="#44f310";
+              }else if(mapData[i].estado=="MODERATE"){
+                color="#f3e610";
+              }else if(mapData[i].estado=="GOOD"){
+                color="#f37010";
+              }else if(mapData[i].estado=="EXCELLENT"){
+                color=" #f31010 ";
+              }
+              
+              this.circle.push(  new google.maps.Circle({
+                strokeColor: '#44f310',
+                strokeOpacity: 0,
+                strokeWeight: 0,
+                fillColor:color,
+                fillOpacity:0.8,
+                map: this.map,
+                center:{lat:parseFloat(mapData[i].latitud), lng:parseFloat(mapData[i].longitud)},
+                
+                radius: 4
+              }));
+              
+              
+            }
             
+            this.cargando=false;
             
+            // this.heatmapExcellent.set('data',this.dExcellent);
           }
-          
-          this.cargando=false;
-        
-          // this.heatmapExcellent.set('data',this.dExcellent);
-        }
-        else{
-          this.cargando=false;
-          alert('Ha olvidado ingresar el rango horario')
-        } 
+          else{
+            this.cargando=false;
+            alert('Ha olvidado ingresar el rango horario')
+          } 
           
           
           
@@ -321,7 +325,8 @@ export default {
           alert("no es posible conectar con la base de datos")
           console.log('error cargando lista1 ');
         });
-
+        
+      }
       
     }
   }

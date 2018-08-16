@@ -235,69 +235,75 @@ export default {
     },
     
     loadDataMap: function () {
-      this.cargando=true;
-      console.log('funcionando');
-      
-      var i, linea, mapData, intervalo;
-      //se crear json con las fechas
-      intervalo = {
-        fechaInicio: this.fechaInicio.getFullYear() + "-0" + (this.fechaInicio.getMonth() + 1) + "-" + this.fechaInicio.getDate(),
-        fechaTermino: this.fechaTermino.getFullYear() + "-0" + (this.fechaTermino.getMonth() + 1) + "-" + this.fechaTermino.getDate()
+      if(this.fechaInicio=="" || this.fechaTermino=="" || this.horario=="") {
+        alert('Ha olvidado ingresar el rango horario')
       }
-      // intervalo={
-      //   fechaInicio:this.fechaInicio,
-      //   fechaTermino: this.fechaTermino
-      // }
-      this.dExcellent = [];
-      // console.log(intervalo);
-      // console.log(this.horario)
-      // se realiza peticion post al servidor para obtener los datos en el intervalo de fechas
-      this.$http.post('http://206.189.184.79:8091/redes/signals/fechas', intervalo)
-        .then(response => {
-          //dependiendo se la opcion seleccionda se accede a uno de los 3 arreglos con las coordenadas
-          if(this.horario != ''){
-            this.display = 'block';
-          
-          this.horario == 'mañana' ? mapData = response.body.mañana
-            : this.horario == 'tarde' ? mapData = response.body.tarde
-              : mapData = response.body.noche;
-          
+      else{
+        this.cargando=true;
+        console.log('funcionando');
 
-          // console.log("excellent", mapData);
-          console.log(response);
-          //se agregan los datos al mapa
-          for (i = 0; i < mapData.length; i++) {
-            // se agregan latidu y logitud, asi como el peso
-            // el peso define la calidad de la señal, mientras mas alto mejor (se ve mas rojo)
-
-            linea = { location: new google.maps.LatLng(mapData[i].latitud, mapData[i].longitud), weight: mapData[i].weight }
-
-            this.dExcellent.push(linea);
-            
-            
-          }
-          
-          this.cargando=false;
-        
-          this.heatmapExcellent.set('data',this.dExcellent);
+        var i, linea, mapData, intervalo;
+        //se crear json con las fechas
+        intervalo = {
+          fechaInicio: this.fechaInicio.getFullYear() + "-0" + (this.fechaInicio.getMonth() + 1) + "-" + this.fechaInicio.getDate(),
+          fechaTermino: this.fechaTermino.getFullYear() + "-0" + (this.fechaTermino.getMonth() + 1) + "-" + this.fechaTermino.getDate()
         }
-        else{
-          this.cargando=false;
-          alert('Ha olvidado ingresar el rango horario')
-        } 
+        // intervalo={
+          //   fechaInicio:this.fechaInicio,
+          //   fechaTermino: this.fechaTermino
+          // }
+          this.dExcellent = [];
+          // console.log(intervalo);
+          // console.log(this.horario)
+          // se realiza peticion post al servidor para obtener los datos en el intervalo de fechas
+          this.$http.post('http://206.189.184.79:8091/redes/signals/fechas', intervalo)
+          .then(response => {
+            //dependiendo se la opcion seleccionda se accede a uno de los 3 arreglos con las coordenadas
+            if(this.horario != ''){
+              this.display = 'block';
+              
+              this.horario == 'mañana' ? mapData = response.body.mañana
+              : this.horario == 'tarde' ? mapData = response.body.tarde
+              : mapData = response.body.noche;
+              
+              
+              // console.log("excellent", mapData);
+              console.log(response);
+              //se agregan los datos al mapa
+              for (i = 0; i < mapData.length; i++) {
+                // se agregan latidu y logitud, asi como el peso
+                // el peso define la calidad de la señal, mientras mas alto mejor (se ve mas rojo)
+                
+                linea = { location: new google.maps.LatLng(mapData[i].latitud, mapData[i].longitud), weight: mapData[i].weight }
+                
+                this.dExcellent.push(linea);
+                
+                
+              }
+              
+              this.cargando=false;
+              
+              this.heatmapExcellent.set('data',this.dExcellent);
+            }
+            else{
+              this.cargando=false;
+              alert('Ha olvidado ingresar el rango horario')
+            } 
+            
+            
+            
+            document.body.getElementById("legend3").style.display = "block";
+            // this.initMap();
+            
+          }, response => {
+            this.cargando=false;
+            alert("no es posible conectar con la base de datos")
+            console.log('error cargando lista1 ');
+          });
           
+        }
           
-          
-          document.body.getElementById("legend3").style.display = "block";
-          // this.initMap();
-          
-        }, response => {
-          this.cargando=false;
-          alert("no es posible conectar con la base de datos")
-          console.log('error cargando lista1 ');
-        });
-
-      
+        }
+      }
     }
-  }
-}
+    
