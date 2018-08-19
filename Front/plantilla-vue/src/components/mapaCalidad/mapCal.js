@@ -282,13 +282,17 @@ export default {
               // this.dExcellent.push(linea);
               var color;
               if(mapData[i].estado=="POOR"){
-                color="#44f310";
-              }else if(mapData[i].estado=="MODERATE"){
-                color="#f3e610";
-              }else if(mapData[i].estado=="GOOD"){
-                color="#f37010";
-              }else if(mapData[i].estado=="EXCELLENT"){
                 color=" #f31010 ";
+               
+              }else if(mapData[i].estado=="MODERATE"){
+                color="#f37010";
+               
+              }else if(mapData[i].estado=="GOOD"){
+                color="#f3e610";
+              
+              }else if(mapData[i].estado=="EXCELLENT"){
+                color="#44f310";
+                
               }
               
               this.circle.push(  new google.maps.Circle({

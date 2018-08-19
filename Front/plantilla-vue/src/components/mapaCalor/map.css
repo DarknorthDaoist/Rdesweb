@@ -63,7 +63,7 @@ html, body {
 }
 
 #legendGradient{
-	background: linear-gradient(to right,green,yellow, red);
+	background: linear-gradient(to right,red,yellow, green);
 	height: 25px;
 	border: 1px solid black;
 }
