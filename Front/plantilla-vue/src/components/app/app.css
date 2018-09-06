@@ -4,12 +4,12 @@
 }
 #content{
     height: 100%;
-	background: #910700;
+	background: #002f6c;
 	padding: 0px;
     min-height: 100vh;
     transition: all 0.3s;
 }
 
 body{
-    background-color: #910700;
+    background-color: #002f6c;
 }
