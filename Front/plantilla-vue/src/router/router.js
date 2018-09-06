@@ -12,10 +12,10 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
     routes: [
-        { path: '/index', alias: "/", name: "inicio", component: Index, meta: { requiresAuth: true } },
-        { path: '/login', name: "login", component: Login,meta: { requiresLogin: true } },
-        { path: '/mapadia', alias: '/dia',name:"dia", component: Mapa, meta: { requiresAuth: true } },
-        { path: '/mapacalidad', alias: '/calidad', component: MapaC, meta: { requiresAuth: true } }
+        { path: '/index', alias: "/", name: "inicio", component:Mapa, meta: { requiresAuth: false } },
+        // { path: '/login', name: "login", component: Login,meta: { requiresLogin: true } },
+        { path: '/', alias: '/',name:"dia", component: Mapa, meta: { requiresAuth:false } },
+        { path: '/mapacalidad', alias: '/calidad', component: MapaC, meta: { requiresAuth: false } }
     ]
 });
 
